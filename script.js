@@ -127,9 +127,15 @@ if (contactForm) {
         const subject = formData.get('subject');
         const message = formData.get('message');
 
-        // You can integrate with a backend API or email service here
-        // For now, we'll show an alert
-        alert(`Thank you ${name}! Your message has been received. I'll get back to you soon at ${email}.`);
+        // Create Gmail compose URL with form data
+        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=muligeindu@gmail.com&su=${encodeURIComponent(subject)}&body=${body}`;
+
+        // Open Gmail in new tab
+        window.open(gmailUrl, '_blank');
+
+        // Show success message
+        alert(`Thank you ${name}! Opening Gmail to send your message...`);
 
         // Reset form
         contactForm.reset();
