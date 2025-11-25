@@ -127,18 +127,19 @@ if (contactForm) {
         const subject = formData.get('subject');
         const message = formData.get('message');
 
-        // Create Gmail compose URL with form data
-        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${encodeURIComponent(message)}`;
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=muligeindu@gmail.com&su=${encodeURIComponent(subject)}&body=${body}`;
+        // Create mailto link with form data
+        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+        const mailtoLink = `mailto:muligeindu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-        // Open Gmail in new tab
-        window.open(gmailUrl, '_blank');
+        // Trigger mailto link
+        window.location.href = mailtoLink;
 
-        // Show success message
-        alert(`Thank you ${name}! Opening Gmail to send your message...`);
-
-        // Reset form
-        contactForm.reset();
+        // Show success message after a brief delay
+        setTimeout(() => {
+            alert(`Thank you ${name}! Your email client will open. Please click send to complete.`);
+            // Reset form
+            contactForm.reset();
+        }, 500);
     });
 }
 
