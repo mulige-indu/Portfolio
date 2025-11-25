@@ -1362,15 +1362,6 @@ header.scrolled::after {
         display: flex;
     }
 
-    .logo-badge {
-        display: none;
-    }
-
-    .logo-text {
-        font-size: 1.2rem;
-        font-weight: 700;
-    }
-
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
